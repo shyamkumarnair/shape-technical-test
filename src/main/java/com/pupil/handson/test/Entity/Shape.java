@@ -31,8 +31,6 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Shape {
 
-	@Schema(description = "Unique identifier of the Shape.", 
-	            example = "1", required = true)
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
