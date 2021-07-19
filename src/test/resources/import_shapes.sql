@@ -1,0 +1,4 @@
+insert into shape (id, type, name, desc, x_Bottom_Left, y_Bottom_Left, x_Top_Left, y_Top_Left, x_Bottom_Right, y_Bottom_Right, x_Top_Right, y_Top_Right, entity_type) values (10001, 'Square', 'Square One',   'This first square has equal sides and is axis-aligned', 0.00, 0.00, 0.00, 5.00, 5.00, 0.00, 5.00, 5.00, 'SQUARE');
+insert into shape (id, type, name, desc, x_Bottom_Left, y_Bottom_Left, x_Top_Left, y_Top_Left, x_Bottom_Right, y_Bottom_Right, x_Top_Right, y_Top_Right, entity_type) values (10002, 'Square', 'Square Two',   'This second square has equal sides and is axis-aligned', 5.00, 5.00, 5.00, 10.00, 10.00, 5.00, 10.00, 10.00, 'SQUARE');
+insert into shape (id, type, name, desc, x_Bottom_Left, y_Bottom_Left, x_Top_Left, y_Top_Left, x_Bottom_Right, y_Bottom_Right, x_Top_Right, y_Top_Right, entity_type) values (10003, 'Square', 'Square Three', 'This third square has equal sides and is axis-aligned', 10.00, 0.00, 10.00, 5.00, 15.00, 0.00, 15.00, 5.00, 'SQUARE');
+
