@@ -1,4 +1,8 @@
-# RestAPI to expose available shapes and ability to add shapes
+# Shape-Rest API Application
+
+RestAPI application developed using springboot to expose available shapes and ability to add shapes
+
+
 ## Help Documents
 ### Open API
 
@@ -7,6 +11,48 @@ http://localhost:8080/shape-api-docs
 ### Swagger
 
 http://localhost:8080/shape-swagger-help.html
+
+## Tools and Libraries used
+	1. Spring Tool Suite as IDE
+	2. Springboot version 2.5.2
+	3. Java version 1.8
+	4. JPA
+	5. Lombok
+	6. JUnit 5
+	7. Mockito 
+	8. Swagger/Open API
+	9. H2 Database
+	10. Springboot Developer tools (for docker image)
+	
+## How to install Lombok
+Lombok is a library that facilitates many tedious tasks and reduces Java source code verbosity.
+
+- Lombok on intellij
+Lombok uses annotation processing through APT. So, when the compiler calls it, the library generates new source files based on annotations in the originals.
+Annotation processing isn't enabled by default, though.
+Therefore, the first thing to do is to enable annotation processing in our project.
+Go to the Preferences | Build, Execution, Deployment | Compiler | Annotation Processors and make sure of the following:
+Enable annotation processing box is checked
+Obtain processors from project classpath option is selected
+There is a dedicated plugin that makes IntelliJ aware of the source code to be generated. After installing it, the errors go away and regular features like Find Usages and Navigate To start working.
+Go to the Preferences | Plugins, open the Marketplace tab, type “lombok” and choose Lombok Plugin by Michail Plushnikov.
+Next, click the Install button on the plugin page.
+After the installation, click the Restart IDE button.
+
+- Lombok on Eclipse
+For Eclipse IDE, get the Lombok jar first. The latest version is located on Maven Central.
+Next,  run the jar via java -jar command, and an installer UI will open. This tries to automatically detect all available Eclipse installations, but it's also possible to specify the location manually.
+Once selected the installations, press the Install/Update button
+If the installation is successful, exit the installer.
+After installing the plugin, please restart the IDE and ensure that Lombok is correctly configured. Please verify this in the About dialog.
+
+## How to build docker image
+
+maven command used ( mvnw spring-boot:build-image)
+
+## How to push the image to docker hub
+
+docker push {docker-userid}/shape-technical-test
 
 ## How to run the application
 #### 1. As Java application 
@@ -29,9 +75,9 @@ http://localhost:8080/shape-swagger-help.html
 
     It can be downloaded from https://hub.docker.com/repository/docker/shyamkumarnair/shape-technical-test
 
-    Launching the application
+    -Launching the application
 
-    docker container run -p 8080:8080 shyamkumarnair/shape-technical-test:latest
+    docker run -d -p 8080:8080 shyamkumarnair/shape-technical-test:latest
 
 ### The Shape application exposes following REST URLs
 
