@@ -17,7 +17,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.pupil.handson.test.Entity.Shape;
 import com.pupil.handson.test.Entity.ShapeType;
 import com.pupil.handson.test.Entity.Square;
 import com.pupil.handson.test.dao.SquareRepository;
@@ -38,13 +37,13 @@ class SquareServiceImplTest {
 	@Mock
 	private Square square;
 	@Mock
-	private List<Shape> shapes;
+	private List<Square> squares;
 
 	@Test
 	public void test_getAllSquares() {
-		List<Shape> squares = new ArrayList<Shape>();
+		List<Square> squares = new ArrayList<Square>();
 		when(squareRepository.findByType(ShapeType.SQUARE)).thenReturn(squares);
-		List<Shape> resultList = squareService.getAllSquares();
+		List<Square> resultList = squareService.getAllSquares();
 		ArgumentCaptor<ShapeType> shapeTypeArgument = ArgumentCaptor.forClass(ShapeType.class);
 		verify(squareRepository).findByType(shapeTypeArgument.capture());
 		assertEquals(ShapeType.SQUARE, shapeTypeArgument.getValue());
@@ -71,9 +70,9 @@ class SquareServiceImplTest {
 
 	@Test
 	public void test_addSquare_overlappingSquare() {
-		when(squareRepository.findByType(ShapeType.SQUARE)).thenReturn(shapes);
+		when(squareRepository.findByType(ShapeType.SQUARE)).thenReturn(squares);
 		when(squareValidator.isValid(square)).thenReturn(true);
-		when(squareValidator.isOverlappingWithExistingShapes(square, shapes)).thenReturn(true);
+		when(squareValidator.isOverlappingWithExistingShapes(square, squares)).thenReturn(true);
 		SquareOverlapException thrown = assertThrows(SquareOverlapException.class,
 				() -> squareService.addSquare(square), "Square Overlap Exception");
 		assertTrue(thrown.getMessage().contains("Square Overlap Exception"));

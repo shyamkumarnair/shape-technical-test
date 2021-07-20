@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.pupil.handson.test.Entity.Shape;
 import com.pupil.handson.test.Entity.ShapeType;
 import com.pupil.handson.test.Entity.Square;
 
@@ -17,5 +16,5 @@ import com.pupil.handson.test.Entity.Square;
  */
 @Repository
 public interface SquareRepository extends JpaRepository<Square, Long> {
-	List<Shape> findByType(ShapeType type);
+	List<Square> findByType(ShapeType type);
 }

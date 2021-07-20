@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 
-import com.pupil.handson.test.Entity.Shape;
 import com.pupil.handson.test.Entity.ShapeType;
 import com.pupil.handson.test.Entity.Square;
 import com.pupil.handson.test.dao.SquareRepository;
@@ -30,7 +29,7 @@ public class SquareServiceImpl implements SquareService {
 	SquareValidator squareValidator;
 
 	@Override
-	public List<Shape> getAllSquares() {
+	public List<Square> getAllSquares() {
 		return squareRepository.findByType(ShapeType.SQUARE);
 	}
 
@@ -39,7 +38,7 @@ public class SquareServiceImpl implements SquareService {
 	public Square addSquare(Square square) {
 		if (!squareValidator.isValid(square))
 			throw new InvalidSquareException();
-		if (squareValidator.isOverlappingWithExistingShapes((Shape) square, getAllSquares()))
+		if (squareValidator.isOverlappingWithExistingShapes(square, getAllSquares()))
 			throw new SquareOverlapException();
 		return squareRepository.save(square);
 	}
