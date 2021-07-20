@@ -143,8 +143,10 @@ Caching is basic right now, however easily pluggable to ehcache or other equival
 
 
 ### Tests
-    
-Tests are in SquareValidatorTest.java. Have tested for the following scenarios,
+
+Integration tests are in SquareIntegrationTest.java
+
+Validation tests are in SquareValidatorTest.java. Have tested for the following scenarios,
 
 Note - [ The co-ordinates are in the order of (xBottomLeft, yBottomLeft, xTopLeft, yTopLeft, xBottomRight, yYBottomRight, xTopRight, yTopRight]
 		 
@@ -175,7 +177,7 @@ Note - [ The co-ordinates are in the order of (xBottomLeft, yBottomLeft, xTopLef
 	
 	1)  new Square coordinates= ("0.00", "0.00", "0.00", "4.00", "5.00", "0.00", "5.00", "4.00")
 	2)  new Square coordinates= ("5.00", "5.00", "5.00", "5.00", "5.00", "5.00", "5.00", "5.00")
-    3)  new Square coordinates= ("0.00", "0.00", "0.00", "5.00", "5.00", "0.00", "5.00", "5.00")
+        3)  new Square coordinates= ("0.00", "0.00", "0.00", "5.00", "5.00", "0.00", "5.00", "5.00")
 
 
 	
