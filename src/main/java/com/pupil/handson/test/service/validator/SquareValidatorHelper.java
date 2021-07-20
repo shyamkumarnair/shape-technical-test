@@ -72,16 +72,16 @@ public class SquareValidatorHelper {
 	 */
 	private static boolean isOverlapping(Square square, Square existingSquares) {
 
-		if (isInside(square.getXBottomLeft(), square.getYBottomLeft(), existingSquares)) {
+		if (isCoordinateInside(square.getXBottomLeft(), square.getYBottomLeft(), existingSquares)) {
 			logOverlapError(square.getXBottomLeft(), square.getYBottomLeft(), existingSquares);
 			return true;
-		} else if (isInside(square.getXBottomRight(), square.getYBottomRight(), existingSquares)) {
+		} else if (isCoordinateInside(square.getXBottomRight(), square.getYBottomRight(), existingSquares)) {
 			logOverlapError(square.getXBottomRight(), square.getYBottomRight(), existingSquares);
 			return true;
-		} else if (isInside(square.getXTopLeft(), square.getYTopLeft(), existingSquares)) {
+		} else if (isCoordinateInside(square.getXTopLeft(), square.getYTopLeft(), existingSquares)) {
 			logOverlapError(square.getXTopLeft(), square.getYTopLeft(), existingSquares);
 			return true;
-		} else if (isInside(square.getXTopRight(), square.getYTopRight(), existingSquares)) {
+		} else if (isCoordinateInside(square.getXTopRight(), square.getYTopRight(), existingSquares)) {
 			logOverlapError(square.getXTopRight(), square.getYTopRight(), existingSquares);
 			return true;
 		} else if (isExactlyOverlapping(square, existingSquares)) {
@@ -119,7 +119,8 @@ public class SquareValidatorHelper {
 	}
 
 	/**
-	 * 
+	 * Logs the overlap error
+	 *  
 	 * @param x
 	 * @param y
 	 * @param existingSquares
@@ -138,37 +139,50 @@ public class SquareValidatorHelper {
 	}
 
 	/**
-	 * Checks whether the provided coordinates are inside the existing square
+	 * Checks any coordinates of new square is inside the existing square
 	 * 
 	 * @param x
 	 * @param y
 	 * @param existingShape
 	 * @return
 	 */
-	private static boolean isInside(BigDecimal x, BigDecimal y, Square existingSquare) {
+	private static boolean isCoordinateInside(BigDecimal x, BigDecimal y, Square existingSquare) {
 		return (isBetween(x, existingSquare.getXBottomLeft(), existingSquare.getXBottomRight())
-				&& isEqualOrBetween(y, existingSquare.getYBottomLeft(), existingSquare.getYTopLeft()))
+				&& isBetween(y, existingSquare.getYBottomLeft(), existingSquare.getYTopLeft()))
 				|| (isBetween(x, existingSquare.getXBottomLeft(), existingSquare.getXBottomRight())
 				&& isBetween(y, existingSquare.getYBottomLeft(), existingSquare.getYTopLeft()));
 	}
 
-
-	private static boolean isAnySideInside(Square existingSquare, Square square) {
-		return ((isEqualOrBetween(existingSquare.getXBottomLeft(), square.getXBottomLeft(), square.getXBottomRight())
-				&& isBetween(existingSquare.getYBottomLeft(), square.getYBottomLeft(), square.getYTopLeft()))
-				|| (isEqualOrBetween(existingSquare.getXBottomRight(), square.getXBottomLeft(), square.getXBottomRight())
-				&& isBetween(existingSquare.getYTopLeft(), square.getYBottomLeft(), square.getYTopLeft())))			
-				|| ((isBetween(existingSquare.getXBottomLeft(), square.getXBottomLeft(), square.getXBottomRight())
-				&& isEqualOrBetween(existingSquare.getYBottomLeft(), square.getYBottomLeft(), square.getYTopLeft()))
-				|| (isBetween(existingSquare.getXBottomRight(), square.getXBottomLeft(), square.getXBottomRight())
-				&& isEqualOrBetween(existingSquare.getYTopLeft(), square.getYBottomLeft(), square.getYTopLeft())));
+	/**
+	 * Checks any sides of the new square overlaps with existing square
+	 *  
+	 * @param existingSquare
+	 * @param newSquare
+	 * @return
+	 */
+	private static boolean isAnySideInside(Square existingSquare, Square newSquare) {
+		return ((isEqualOrBetween(existingSquare.getXBottomLeft(), newSquare.getXBottomLeft(), newSquare.getXBottomRight())
+				&& isBetween(existingSquare.getYBottomLeft(), newSquare.getYBottomLeft(), newSquare.getYTopLeft()))
+				|| (isEqualOrBetween(existingSquare.getXBottomRight(), newSquare.getXBottomLeft(), newSquare.getXBottomRight())
+				&& isBetween(existingSquare.getYTopLeft(), newSquare.getYBottomLeft(), newSquare.getYTopLeft())))			
+				|| ((isBetween(existingSquare.getXBottomLeft(), newSquare.getXBottomLeft(), newSquare.getXBottomRight())
+				&& isEqualOrBetween(existingSquare.getYBottomLeft(), newSquare.getYBottomLeft(), newSquare.getYTopLeft()))
+				|| (isBetween(existingSquare.getXBottomRight(), newSquare.getXBottomLeft(), newSquare.getXBottomRight())
+				&& isEqualOrBetween(existingSquare.getYTopLeft(), newSquare.getYBottomLeft(), newSquare.getYTopLeft())));
 	}
 
-	private static boolean isExactlyInside(Square existingSquare, Square square) {
-		return (isEqualOrBetween(existingSquare.getXBottomLeft(), square.getXBottomLeft(), square.getXBottomRight())
-				&& isEqualOrBetween(existingSquare.getXBottomRight(), square.getXBottomLeft(), square.getXBottomRight())
-				&& isEqualOrBetween(existingSquare.getYBottomLeft(), square.getYBottomLeft(), square.getYTopLeft())
-				&& isEqualOrBetween(existingSquare.getYTopLeft(), square.getYBottomLeft(), square.getYTopLeft()));
+	/**
+	 * Checks any existing square is exist inside the boundaries of new square
+	 * 
+	 * @param existingSquare
+	 * @param newSquare
+	 * @return
+	 */
+	private static boolean isExactlyInside(Square existingSquare, Square newSquare) {
+		return (isEqualOrBetween(existingSquare.getXBottomLeft(), newSquare.getXBottomLeft(), newSquare.getXBottomRight())
+				&& isEqualOrBetween(existingSquare.getXBottomRight(), newSquare.getXBottomLeft(), newSquare.getXBottomRight())
+				&& isEqualOrBetween(existingSquare.getYBottomLeft(), newSquare.getYBottomLeft(), newSquare.getYTopLeft())
+				&& isEqualOrBetween(existingSquare.getYTopLeft(), newSquare.getYBottomLeft(), newSquare.getYTopLeft()));
 	}
 
 	private static boolean isBetween(BigDecimal value, BigDecimal min, BigDecimal max) {
